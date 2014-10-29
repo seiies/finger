@@ -1,7 +1,7 @@
 finger [![Build Status](https://travis-ci.org/fistlabs/finger.svg?branch=master)](https://travis-ci.org/fistlabs/finger)
 =========
 
-Finger is a powerful and fast nodejs router
+Finger is a powerful and fast Nodejs router.
 
 ##[core/rule](core/rule.js)
 ```Rule``` is a part of ```Matcher``` that can match and build urls described in special syntax.
@@ -14,26 +14,26 @@ var rule = new Rule('/');
 ```
 
 ####```String ruleString```
-```ruleString``` is a ```String``` describing url both for mathing and building.
-```ruleString``` could describe pathname and, optionally, query.
-It consists of static rule parts, parameters captures and optional parts.
+```ruleString``` is a ```String```, which describes url both for mathing and building.
+```ruleString``` can describe pathname and, optionally, query.
+It consists of static rule parts, parameters, captures and optional parts.
 
 ```
 /news/(42/)
 ```
-The ```/news/``` part describes required part of url, and ```42/``` - optional.
+The ```/news/``` part describes required part of url, and ```42/``` is optional.
 Let's make optional part more dynamic:
 
 ```
 /news/(<postId>/)
 ```
-Now, ```postId``` is parameter now. This rule both valid for ```/news/``` and ```/news/146/``` urls.
+Now ```postId``` is the parameter. This rule both valid for ```/news/``` and ```/news/146/``` paths.
 Let's describe query arguments.
 
 ```
 /news/(<postId>/)&date
 ```
-For now ```date``` is required query argument. Let's describe more than one query argument:
+For now ```date``` is the required query argument. Let's describe more than one query argument:
 
 ```
 /news/(<postId>/)&date&time
@@ -43,13 +43,13 @@ Query arguments may be optional:
 ```
 /news/(<postId>/)&date?time
 ```
-Now, ```time``` argument is optional.
+Now ```time``` argument is optional.
 
 ####```Object options```
-Rule object support some options
+Rule object supports some options.
 
 #####```Boolean options.ignoreCase```
-Disables case sensitivity for pathname rule
+Disables case sensitivity for pathname rule.
 
 ```js
 var rule = new Rule('/news/', {
@@ -60,7 +60,7 @@ var rule = new Rule('/news/', {
 For this rule both ```/news/``` and ```/NeWs/``` urls are identical.
 
 ###```Object|null rule.match(String url)```
-Matches the url to the rule. Returns the set of values according to described arguments
+Matches the url to the rule. Returns the set of values according to described arguments.
 
 ```js
 var rule = new Rule('/news/(<postId>/)?date');
@@ -72,7 +72,7 @@ rule.match('/forum/'); // -> null
 ```
 
 ###```String rule.build([Object args])```
-Builds url from rule
+Builds the url from the rule.
 
 ```js
 var rule = new Rule('/news/(<postId>/)?date');
@@ -90,7 +90,7 @@ Creates new ```matcher``` object. ```options``` is a general options for all rul
 ###```Rule matcher.addRule(String ruleString[, Object ruleData])```
 Adds a ```rule``` to ```matcher```.
 ```ruleString``` is a rule declaration that I mentioned above.
-```ruleData``` is an object that will be associated with rule. ```ruleData.name``` is required, it will be random generated if omitted.
+```ruleData``` is an object that will be associated with the rule. ```ruleData.name``` is required, it will be random generated if omitted.
 
 ```js
 var matcher = new Matcher();
@@ -100,7 +100,7 @@ rule.data.foo // -> 42
 ```
 
 ###```Rule|null matcher.delRule(String name)```
-Deletes the rule from set
+Deletes the rule from the set.
 
 ```js
 var matcher = new Matcher();
@@ -109,7 +109,7 @@ assert.strictEqual(rule, matcher.delRule('index'));
 ```
 
 ###```Rule|void matcher.getRule(String name)```
-Returns the ```rule``` by ```name```
+Returns the ```rule``` by ```name```.
 
 ```js
 var matcher = new Matcher();
@@ -118,7 +118,7 @@ assert.strictEqual(rule, matcher.getRule('index'));
 ```
 
 ###```Array<Rule> matcher.matchAll(String url)```
-Returns all match results
+Returns all match results.
 
 ```js
 var matcher = new Matcher();
@@ -157,7 +157,7 @@ Builtin types:
  * ```Free```  - default for query parameters (```[\s\S]+?```).
 
 ###Combined parameters
-The parameters could describe where values must be placed in arguments object.
+The parameters describe where values must be placed in arguments object.
 
 ```js
 var rule = new Rule('/<page.section>/(<page.itemId>/)');
